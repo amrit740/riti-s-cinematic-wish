@@ -2,95 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+@import '@fontsource/cormorant-garamond/400.css';
+@import '@fontsource/cormorant-garamond/500.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/700.css';
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Cinematic midnight palette */
+    --background: 230 35% 7%;
+    --foreground: 45 30% 96%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 230 30% 12%;
+    --card-foreground: 45 30% 96%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 230 30% 12%;
+    --popover-foreground: 45 30% 96%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Warm gold accent */
+    --primary: 38 92% 60%;
+    --primary-foreground: 230 35% 7%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Soft rose */
+    --secondary: 350 60% 70%;
+    --secondary-foreground: 230 35% 7%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted midnight */
+    --muted: 230 25% 18%;
+    --muted-foreground: 230 15% 55%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Celebration amber */
+    --accent: 32 95% 55%;
+    --accent-foreground: 230 35% 7%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 230 20% 20%;
+    --input: 230 20% 20%;
+    --ring: 38 92% 60%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Custom cinematic tokens */
+    --glow-gold: 38 100% 65%;
+    --glow-rose: 350 80% 75%;
+    --glow-blue: 220 80% 65%;
+    --shimmer: 45 100% 85%;
+    --particle-primary: 38 90% 70%;
+    --particle-secondary: 350 70% 75%;
+    --particle-tertiary: 45 80% 80%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Gradients */
+    --gradient-midnight: linear-gradient(180deg, hsl(230 40% 5%) 0%, hsl(250 35% 12%) 50%, hsl(230 35% 8%) 100%);
+    --gradient-awakening: linear-gradient(180deg, hsl(230 30% 15%) 0%, hsl(250 25% 20%) 40%, hsl(32 40% 15%) 100%);
+    --gradient-celebration: radial-gradient(ellipse at center, hsl(38 50% 20%) 0%, hsl(230 35% 10%) 70%);
+    --gradient-shimmer: linear-gradient(90deg, transparent 0%, hsl(var(--shimmer) / 0.6) 50%, transparent 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(var(--glow-gold) / 0.3) 0%, transparent 70%);
   }
 }
 
@@ -99,7 +67,245 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  /* Breathing glow animation for CTA */
+  .breathing-glow {
+    animation: breathingGlow 3s ease-in-out infinite;
+  }
+
+  /* Shimmer sweep effect */
+  .shimmer-sweep {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer-sweep::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-shimmer);
+    animation: shimmerSweep 3s ease-in-out infinite;
+  }
+
+  /* Particle styles */
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+
+  /* Text reveal animation */
+  .text-reveal {
+    animation: textReveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  /* Name special glow */
+  .name-glow {
+    text-shadow: 
+      0 0 20px hsl(var(--glow-gold) / 0.6),
+      0 0 40px hsl(var(--glow-gold) / 0.4),
+      0 0 60px hsl(var(--glow-gold) / 0.2);
+    animation: nameGlow 2s ease-in-out infinite alternate;
+  }
+
+  /* Cinematic blur */
+  .cinematic-blur {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Photo frame glow */
+  .photo-glow {
+    box-shadow: 
+      0 0 30px hsl(var(--glow-gold) / 0.3),
+      0 20px 50px hsl(230 35% 5% / 0.8);
+  }
+
+  /* Confetti particle */
+  .confetti {
+    animation: confettiFall 4s ease-out forwards;
+  }
+
+  /* Heart float */
+  .heart-float {
+    animation: heartFloat 3s ease-out forwards;
+  }
+
+  /* Sparkle */
+  .sparkle {
+    animation: sparkle 1.5s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  /* Fade in utilities */
+  .fade-in-slow {
+    animation: fadeIn 2s ease-out forwards;
+  }
+
+  .fade-in-medium {
+    animation: fadeIn 1s ease-out forwards;
+  }
+
+  .scale-in-gentle {
+    animation: scaleIn 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  /* Delay utilities */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-700 { animation-delay: 700ms; }
+  .delay-1000 { animation-delay: 1000ms; }
+  .delay-1500 { animation-delay: 1500ms; }
+  .delay-2000 { animation-delay: 2000ms; }
+  .delay-2500 { animation-delay: 2500ms; }
+  .delay-3000 { animation-delay: 3000ms; }
+}
+
+@keyframes breathingGlow {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px hsl(var(--glow-gold) / 0.3),
+      0 0 40px hsl(var(--glow-gold) / 0.2),
+      0 0 60px hsl(var(--glow-gold) / 0.1);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 
+      0 0 30px hsl(var(--glow-gold) / 0.5),
+      0 0 60px hsl(var(--glow-gold) / 0.3),
+      0 0 90px hsl(var(--glow-gold) / 0.2);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes shimmerSweep {
+  0% { left: -100%; }
+  50%, 100% { left: 100%; }
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(20px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes nameGlow {
+  0% {
+    text-shadow: 
+      0 0 20px hsl(var(--glow-gold) / 0.6),
+      0 0 40px hsl(var(--glow-gold) / 0.4),
+      0 0 60px hsl(var(--glow-gold) / 0.2);
+  }
+  100% {
+    text-shadow: 
+      0 0 30px hsl(var(--glow-gold) / 0.8),
+      0 0 60px hsl(var(--glow-gold) / 0.5),
+      0 0 100px hsl(var(--glow-gold) / 0.3);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes confettiFall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(720deg);
+  }
+}
+
+@keyframes heartFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(0.5);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-15px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-25px) translateX(-5px);
+  }
+  75% {
+    transform: translateY(-10px) translateX(-15px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
   }
 }
