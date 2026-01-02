@@ -30,18 +30,27 @@ const ConfettiExplosion = memo(({ isActive }: ConfettiExplosionProps) => {
 
   useEffect(() => {
     if (isActive) {
-      const newPieces: ConfettiPiece[] = Array.from({ length: 50 }, (_, i) => ({
-        id: i,
-        x: 45 + Math.random() * 10,
-        y: -5,
+      // Initial burst with more pieces
+      const createPieces = () => Array.from({ length: 80 }, (_, i) => ({
+        id: Date.now() + i,
+        x: 30 + Math.random() * 40,
+        y: -5 - Math.random() * 10,
         rotation: Math.random() * 360,
         color: colors[Math.floor(Math.random() * colors.length)],
-        size: Math.random() * 10 + 5,
-        delay: Math.random() * 1,
-        duration: Math.random() * 3 + 3,
+        size: Math.random() * 12 + 5,
+        delay: Math.random() * 0.8,
+        duration: Math.random() * 3 + 4,
         shape: ['circle', 'square', 'heart'][Math.floor(Math.random() * 3)] as 'circle' | 'square' | 'heart',
       }));
-      setPieces(newPieces);
+      
+      setPieces(createPieces());
+
+      // Add more confetti waves
+      const interval = setInterval(() => {
+        setPieces((prev) => [...prev.slice(-60), ...createPieces().slice(0, 30)]);
+      }, 2000);
+
+      return () => clearInterval(interval);
     }
   }, [isActive]);
 
