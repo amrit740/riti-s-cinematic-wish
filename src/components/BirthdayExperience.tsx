@@ -7,6 +7,7 @@ import SparkleEffect from '@/components/SparkleEffect';
 import PhotoReveal from '@/components/PhotoReveal';
 import BirthdayCake from '@/components/BirthdayCake';
 import ActionButtons from '@/components/ActionButtons';
+import FireworksEffect from '@/components/FireworksEffect';
 
 type Scene = 'idle' | 'awakening' | 'reveal' | 'celebration' | 'closure';
 
@@ -113,6 +114,9 @@ const BirthdayExperience = () => {
 
       {/* Confetti */}
       <ConfettiExplosion isActive={scene === 'celebration'} />
+
+      {/* Fireworks */}
+      <FireworksEffect isActive={scene === 'celebration' || scene === 'closure'} />
 
       {/* Main content */}
       <div className="relative z-40 min-h-screen flex flex-col items-center justify-center px-6 py-12">
